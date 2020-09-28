@@ -8,30 +8,33 @@ namespace EmployeeWageComputation
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Computation Program");
             Console.WriteLine("Employee wage: " + EmployeeDailyWageComputation());
         }
+
+        public const int EMP_RATE_PER_HOUR = 20;
+        public const int IS_FULL_TIME = 1;
+        public const int IS_PART_TIME = 2;
+
         static int EmployeeDailyWageComputation()
         {
-            int IS_FULL_TIME = 1;
-            int IS_PART_TIME = 2;
-            int EMP_RATE_PER_HOUR = 20;
             int empHrs = 0;
             Random random = new Random();
-            int empType = random.Next(0, 3);
-            if (empType == IS_FULL_TIME)
+            int empCheck = random.Next(0, 3);
+            switch (empCheck)
             {
-                empHrs = 8;
-            }
-            else if(empType == IS_PART_TIME)
-            {
-                empHrs = 4;
-            }
-            else
-            {
-                empHrs = 0;
+                case IS_FULL_TIME:
+                    empHrs = 8;
+                    break;
+                case IS_PART_TIME:
+                    empHrs = 4;
+                    break;
+                default:
+                    empHrs = 0;
+                    break;
             }
             return empHrs * EMP_RATE_PER_HOUR;
         }
