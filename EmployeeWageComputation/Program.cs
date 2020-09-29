@@ -24,7 +24,7 @@ namespace EmployeeWageComputation
             int totalHrs = 0;
             int totalDays = 0;
             Random random = new Random();
-            while (totalHrs < MAX_HRS_IN_A_MONTH && totalDays < NUM_OF_WORKING_DAYS)
+            while (totalHrs <= MAX_HRS_IN_A_MONTH && totalDays < NUM_OF_WORKING_DAYS)
             {
                 totalDays++;
                 int empCheck = random.Next(0, 3);
