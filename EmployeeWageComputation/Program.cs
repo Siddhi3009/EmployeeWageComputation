@@ -8,18 +8,17 @@ namespace EmployeeWageComputation
 {
     class Program
     {
-
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Welcome to Employee Wage Computation Program");
-            Console.WriteLine("Employee wage: " + EmployeeDailyWageComputation());
-        }
-
         public const int EMP_RATE_PER_HOUR = 20;
         public const int IS_FULL_TIME = 1;
         public const int IS_PART_TIME = 2;
-
-        static int EmployeeDailyWageComputation()
+        public const int MAXIMUM_WORKING_DAYS = 20;
+        public const int MAXIMUM_WORKING_HOURS = 100;
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to Employee Wage Computation Program");
+            Console.WriteLine("Employee wage: " + EmployeeWageComputation());
+        }
+        static int EmployeeHours()
         {
             int empHrs = 0;
             Random random = new Random();
@@ -36,7 +35,22 @@ namespace EmployeeWageComputation
                     empHrs = 0;
                     break;
             }
-            return empHrs * EMP_RATE_PER_HOUR;
+            return empHrs;
+        }
+        static int EmployeeWageComputation()
+        {
+            int monthlySalary = 0;
+            int totalWorkingHrs = 0;
+            int totalWorkingDays = 0;
+            while (totalWorkingHrs <= MAXIMUM_WORKING_HOURS && totalWorkingDays < MAXIMUM_WORKING_DAYS)
+            {
+                totalWorkingDays++;
+                int empHrs = EmployeeHours();
+                totalWorkingHrs += empHrs;
+                Console.WriteLine("Working day: " + totalWorkingDays + "Working Hours: " + empHrs);
+            }
+            monthlySalary = totalWorkingHrs * EMP_RATE_PER_HOUR;
+            return monthlySalary;
         }
     }
 }
