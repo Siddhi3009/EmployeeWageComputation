@@ -6,16 +6,30 @@ using System.Threading.Tasks;
 
 namespace EmployeeWageComputation
 {
-    class Program
+    class EmployeeWageBuilder
     {
         public const int IS_FULL_TIME = 1;
         public const int IS_PART_TIME = 2;
+
+        private string company;
+        private int noOfWorkingDays;
+        private int maxWorkingHrs;
+        private int empRatePerHr;
+
+        public EmployeeWageBuilder(string company, int empRatePerHr, int noOfWorkingDays, int maxWorkingHrs)
+        {
+            this.company = company;
+            this.empRatePerHr = empRatePerHr;
+            this.noOfWorkingDays = noOfWorkingDays;
+            this.maxWorkingHrs = maxWorkingHrs;
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Computation Program");
-            Console.WriteLine("Employee wage: " + EmployeeWageComputation("D'Mart", 20, 2, 10));
-            Console.WriteLine("Employee wage: " + EmployeeWageComputation("Reliance", 10, 4, 20));
-
+            EmployeeWageBuilder dmart = new EmployeeWageBuilder("D'Mart", 20, 2, 10);
+            Console.WriteLine("Employee wage: " + dmart.EmployeeWageComputation());
+            EmployeeWageBuilder reliance = new EmployeeWageBuilder("Reliance", 10, 4, 20);
+            Console.WriteLine("Employee wage: " + reliance.EmployeeWageComputation());
         }
         static int EmployeeHours()
         {
@@ -37,7 +51,7 @@ namespace EmployeeWageComputation
             return empHrs;
 
         }
-        static int EmployeeWageComputation(string company, int empRatePerHr, int noOfWorkingDays, int maxWorkingHrs)
+        public int EmployeeWageComputation()
         {
             int monthlySalary = 0;
             int totalWorkingHrs = 0;
