@@ -31,11 +31,9 @@ namespace EmployeeWageComputation
             EmployeeWageBuilder reliance = new EmployeeWageBuilder("Reliance", 10, 4, 20);
             Console.WriteLine("Employee wage: " + reliance.EmployeeWageComputation());
         }
-        static int EmployeeHours()
+        static int EmployeeHours(int empCheck)
         {
             int empHrs = 0;
-            Random random = new Random();
-            int empCheck = random.Next(0, 3);
             switch (empCheck)
             {
                 case IS_FULL_TIME:
@@ -57,10 +55,12 @@ namespace EmployeeWageComputation
             int totalWorkingHrs = 0;
             int totalWorkingDays = 0;
             Console.WriteLine("\nCompany: " + company + "\n");
+            Random random = new Random();
             while (totalWorkingHrs <= maxWorkingHrs && totalWorkingDays < noOfWorkingDays)
             {
+                int empCheck = random.Next(0, 3);
                 totalWorkingDays++;
-                int empHrs = EmployeeHours();
+                int empHrs = EmployeeHours(empCheck);
                 totalWorkingHrs += empHrs;
                 Console.WriteLine("Working day: " + totalWorkingDays + " Working Hours: " + empHrs);
             }
