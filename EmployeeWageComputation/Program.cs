@@ -39,8 +39,8 @@ namespace EmployeeWageComputation
             int monthlySalary = 0;
             int totalWorkingHrs = 0;
             int totalWorkingDays = 0;
-            Random random = new Random();
             Console.WriteLine("\nCompany: " + company + "\n");
+            Random random = new Random();
             while (totalWorkingHrs <= maxWorkingHrs && totalWorkingDays < noOfWorkingDays)
             {
                 totalWorkingDays++;
