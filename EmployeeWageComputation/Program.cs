@@ -10,32 +10,15 @@ namespace EmployeeWageComputation
     {
         public const int IS_FULL_TIME = 1;
         public const int IS_PART_TIME = 2;
-
-        private string company;
-        private int noOfWorkingDays;
-        private int maxWorkingHrs;
-        private int empRatePerHr;
-
-        public EmployeeWageBuilder(string company, int empRatePerHr, int noOfWorkingDays, int maxWorkingHrs)
-        {
-            this.company = company;
-            this.empRatePerHr = empRatePerHr;
-            this.noOfWorkingDays = noOfWorkingDays;
-            this.maxWorkingHrs = maxWorkingHrs;
-        }
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Computation Program");
-            EmployeeWageBuilder dmart = new EmployeeWageBuilder("D'Mart", 20, 2, 10);
-            Console.WriteLine("Employee wage: " + dmart.EmployeeWageComputation());
-            EmployeeWageBuilder reliance = new EmployeeWageBuilder("Reliance", 10, 4, 20);
-            Console.WriteLine("Employee wage: " + reliance.EmployeeWageComputation());
+            Console.WriteLine("Employee wage: " + EmployeeWageComputation("D'Mart", 20, 2, 10));
+            Console.WriteLine("Employee wage: " + EmployeeWageComputation("Reliance", 10, 4, 20));
         }
-        static int EmployeeHours()
+        static int EmployeeHours(int empCheck)
         {
             int empHrs = 0;
-            Random random = new Random();
-            int empCheck = random.Next(0, 3);
             switch (empCheck)
             {
                 case IS_FULL_TIME:
@@ -51,16 +34,18 @@ namespace EmployeeWageComputation
             return empHrs;
 
         }
-        public int EmployeeWageComputation()
+        static int EmployeeWageComputation(string company, int empRatePerHr, int noOfWorkingDays, int maxWorkingHrs)
         {
             int monthlySalary = 0;
             int totalWorkingHrs = 0;
             int totalWorkingDays = 0;
+            Random random = new Random();
             Console.WriteLine("\nCompany: " + company + "\n");
             while (totalWorkingHrs <= maxWorkingHrs && totalWorkingDays < noOfWorkingDays)
             {
                 totalWorkingDays++;
-                int empHrs = EmployeeHours();
+                int empCheck = random.Next(0, 3);
+                int empHrs = EmployeeHours(empCheck);
                 totalWorkingHrs += empHrs;
                 Console.WriteLine("Working day: " + totalWorkingDays + " Working Hours: " + empHrs);
             }
