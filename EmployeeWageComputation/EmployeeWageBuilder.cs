@@ -52,7 +52,7 @@ namespace EmployeeWageComputation
                         break;
                 }
                 totalWorkingHrs += empHrs;
-                Console.WriteLine("Working day: " + totalWorkingDays + " Working Hours: " + empHrs);
+                Console.WriteLine("Working day: " + totalWorkingDays + " Working Hours: " + empHrs + " Daily wage: " + empHrs * empwage.empRatePerHr);
             }
             monthlySalary = totalWorkingHrs * empwage.empRatePerHr;
             return monthlySalary;
